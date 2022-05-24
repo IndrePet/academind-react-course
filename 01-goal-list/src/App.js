@@ -6,14 +6,25 @@ import './App.css';
 
 const App = () => {
   const [courseGoals, setCourseGoals] = useState([
-    { text: 'Do all exercises!', id: 'g1' },
-    { text: 'Finish the course!', id: 'g2' }
+    { text: 'Do all exercises!', id: '2' },
+    { text: 'Finish the course!', id: '1' }
   ]);
+
+  // const addGoalHandler = enteredText => {
+  //   setCourseGoals(prevGoals => {
+  //     const updatedGoals = [...prevGoals];
+  //     console.log(updatedGoals);
+  //     updatedGoals.unshift({ text: enteredText, id: Math.random().toString() });
+  //     return updatedGoals;
+  //   });
+  // };
 
   const addGoalHandler = enteredText => {
     setCourseGoals(prevGoals => {
       const updatedGoals = [...prevGoals];
-      updatedGoals.unshift({ text: enteredText, id: Math.random().toString() });
+      let lastID = updatedGoals.length>0?updatedGoals[0].id:'0';
+      const newID = (parseInt(lastID)+1).toString();
+      updatedGoals.unshift({ text: enteredText, id: newID});
       return updatedGoals;
     });
   };
