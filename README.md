@@ -16,5 +16,5 @@ To see the code of a specific project, switch to a branch via the dropdown menu.
 
 ## :eye_speech_bubble: About
 
-[About the course](https://www.udemy.com/course/react-the-complete-guide-incl-redux/)
-[About the instructor](https://www.udemy.com/user/maximilian-schwarzmuller/)
+- [About the course](https://www.udemy.com/course/react-the-complete-guide-incl-redux/)
+- [About the instructor](https://www.udemy.com/user/maximilian-schwarzmuller/)
