@@ -5,7 +5,12 @@ To see the code of a specific project, switch to a branch via the dropdown menu.
 
 ## :dart: Projects and features
 
-- [] Goal list  
+- [x] Goal list_v1 // for learning dynamic styling
+  - [x] Adding dynamic inline styles & setting classes dynamically
+  - [x] Using [styled-components](https://styled-components.com/) package
+  - [x] Using CSS modules
+- [x] Goal list_v2 // for learning to debug
+  - [x] Error messages, code flow, Chrome DevTools and using breakpoints, React DevTools extension
 
 ## :princess: Author
 
