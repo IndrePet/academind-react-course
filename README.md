@@ -13,7 +13,8 @@ To see the code of a specific project, switch to a branch via the dropdown menu.
   - [x] Error messages, code flow, Chrome DevTools and using breakpoints, React DevTools extension
 - [x] Users list // practice project done by me.
   - [x] Doing a simple project without guidance + a challenge to figure out how to do a Error Modal with what we've learned so far.
-- [x] Users list_guided // same project done with instructor's guidance
+- [x] Users list_guided // same project done with instructor's guidance + new concepts
+  - [x] Using React.Fragments and how it works, useRef, ReactDOM.createPortal
 
 ## :princess: Author
 
