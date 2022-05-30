@@ -15,7 +15,7 @@ To see the code of a specific project, switch to a branch via the dropdown menu.
   - [x] Doing a simple project without guidance + a challenge to figure out how to do a Error Modal with what we've learned so far.
 - [x] **Users list_guided** // *same project done with instructor's guidance + new concepts*
   - [x] Using React.Fragments and how it works, useRef, ReactDOM.createPortal
-- [x] **Dummy login page** // *useRef, useEffect, useContext and useReduced hooks; React fragments, forwarding refs *
+- [x] **Dummy login page** // *useRef, useEffect, useContext and useReduced hooks; React fragments, forwarding refs*
 - [ ] **Food ordering app**
 
 ## :princess: Author
