@@ -19,7 +19,8 @@ To see the code of a specific project, switch to a branch via the dropdown menu.
 - [x] **Food ordering app (05)** // *putting what we've learned so far together.*
 - [x] **Class based users list (06)**
   - [x] Creating class based components. Lifecycle methods. Context in class based components. Error boundary.
-- [ ] **Fetch Movies (07)**
+- [x] **Fetch Movies (07)** // *Sending http requests. Using API, GET & POST requests to Firebase*
+- [ ] **Custom hooks (08)**
 
 ## :princess: Author
 
