@@ -1,21 +1,27 @@
-import { useState } from 'react';
+import useInput from '../hooks/use-input';
 
 import { Box } from '@mui/system';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 const SimpleInput = () => {
-  const [enteredName, setEnteredName] = useState('');
-  const [enteredEmail, setEnteredEmail] = useState('');
+  const {
+    value: enteredName,
+    isValid: enteredNameIsValid,
+    hasError: nameInputHasError,
+    valueChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: resetNameInput,
+  } = useInput((value) => value.trim() !== '');
 
-  const [enteredNameTouched, setEnteredNameTouched] = useState(false);
-  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
-
-  const enteredNameIsValid = enteredName.trim() !== '';
-  const enteredEmailIsValid =
-    enteredEmail.includes('@') && enteredEmail.trim() !== '';
-  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
-  const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
+  const {
+    value: enteredEmail,
+    isValid: enteredEmailIsValid,
+    hasError: emailInputHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmailInput,
+  } = useInput((value) => value.includes('@') && value.trim() !== '');
 
   let formIsValid = false;
 
@@ -23,35 +29,15 @@ const SimpleInput = () => {
     formIsValid = true;
   }
 
-  const nameInputChangeHandler = (event) => {
-    setEnteredName(event.target.value);
-  };
-
-  const emailInputChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
-  };
-
-  const emailInputBlurHandler = () => {
-    setEnteredEmailTouched(true);
-  };
-
-  const nameInputBlurHandler = () => {
-    setEnteredNameTouched(true);
-  };
-
   const formSubmissionHandler = (event) => {
     event.preventDefault();
-
-    setEnteredNameTouched(true);
-    setEnteredEmailTouched(true);
 
     if (!enteredNameIsValid && !enteredEmailIsValid) {
       return;
     }
-    setEnteredName('');
-    setEnteredEmail('');
-    setEnteredNameTouched(false);
-    setEnteredEmailTouched(false);
+
+    resetNameInput();
+    resetEmailInput();
   };
 
   return (
@@ -61,11 +47,12 @@ const SimpleInput = () => {
         id="name"
         label="Your Name"
         fullWidth
-        onChange={nameInputChangeHandler}
-        onBlur={nameInputBlurHandler}
+        autoComplete="off"
+        onChange={nameChangeHandler}
+        onBlur={nameBlurHandler}
         value={enteredName}
-        helperText={nameInputIsInvalid && 'Enter valid name (from attribute)'}
-        error={nameInputIsInvalid}
+        helperText={nameInputHasError && 'Enter valid name (from attribute)'}
+        error={nameInputHasError}
       />
       <TextField
         required
@@ -73,12 +60,13 @@ const SimpleInput = () => {
         label="Your E-mail"
         type="email"
         fullWidth
+        autoComplete="off"
         sx={{ mt: 3 }}
-        onChange={emailInputChangeHandler}
-        onBlur={emailInputBlurHandler}
+        onChange={emailChangeHandler}
+        onBlur={emailBlurHandler}
         value={enteredEmail}
-        helperText={emailInputIsInvalid && 'Enter valid email (from attribute)'}
-        error={emailInputIsInvalid}
+        helperText={emailInputHasError && 'Enter valid email (from attribute)'}
+        error={emailInputHasError}
       />
       <Button
         fullWidth
