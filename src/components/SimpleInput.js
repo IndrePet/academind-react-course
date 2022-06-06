@@ -4,45 +4,54 @@ import { Box } from '@mui/system';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const SimpleInput = (props) => {
+const SimpleInput = () => {
   const [enteredName, setEnteredName] = useState('');
+  const [enteredEmail, setEnteredEmail] = useState('');
+
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
 
   const enteredNameIsValid = enteredName.trim() !== '';
+  const enteredEmailIsValid =
+    enteredEmail.includes('@') && enteredEmail.trim() !== '';
   const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
+  const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
 
   let formIsValid = false;
 
-  if (enteredNameIsValid) {
+  if (enteredNameIsValid && enteredEmailIsValid) {
     formIsValid = true;
   }
 
-  let helperText = '';
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
   };
 
-  const nameInputBlurHandler = (event) => {
+  const emailInputChangeHandler = (event) => {
+    setEnteredEmail(event.target.value);
+  };
+
+  const emailInputBlurHandler = () => {
+    setEnteredEmailTouched(true);
+  };
+
+  const nameInputBlurHandler = () => {
     setEnteredNameTouched(true);
-    if (enteredName.trim() === '') {
-      helperText = 'Please enter a valid name (from submission handler)';
-      console.log(helperText);
-      return;
-    }
   };
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
 
     setEnteredNameTouched(true);
+    setEnteredEmailTouched(true);
 
-    if (!enteredNameIsValid) {
-      helperText = 'Please enter a valid name (from submission handler)';
-      console.log(helperText);
+    if (!enteredNameIsValid && !enteredEmailIsValid) {
       return;
     }
     setEnteredName('');
+    setEnteredEmail('');
     setEnteredNameTouched(false);
+    setEnteredEmailTouched(false);
   };
 
   return (
@@ -54,9 +63,22 @@ const SimpleInput = (props) => {
         fullWidth
         onChange={nameInputChangeHandler}
         onBlur={nameInputBlurHandler}
-        value={enteredName || ''}
+        value={enteredName}
         helperText={nameInputIsInvalid && 'Enter valid name (from attribute)'}
         error={nameInputIsInvalid}
+      />
+      <TextField
+        required
+        id="email"
+        label="Your E-mail"
+        type="email"
+        fullWidth
+        sx={{ mt: 3 }}
+        onChange={emailInputChangeHandler}
+        onBlur={emailInputBlurHandler}
+        value={enteredEmail}
+        helperText={emailInputIsInvalid && 'Enter valid email (from attribute)'}
+        error={emailInputIsInvalid}
       />
       <Button
         fullWidth
@@ -69,15 +91,6 @@ const SimpleInput = (props) => {
         Submit
       </Button>
     </Box>
-    // <Form>
-    //   <div className="form-control">
-    //     <label htmlFor="name">Your Name</label>
-    //     <input type="text" id="name" />
-    //   </div>
-    //   <div className="form-actions">
-    //     <button>Submit</button>
-    //   </div>
-    // </Form>
   );
 };
 
