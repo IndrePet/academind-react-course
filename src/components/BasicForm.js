@@ -4,8 +4,12 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import useInputWR from '../hooks/use-input-reducer';
 
-import useInput from '../hooks/use-input';
+// import useInput from '../hooks/use-input';
+
+const isNotEmpty = (value) => value.trim() !== '';
+const isEmail = (value) => value.includes('@');
 
 const BasicForm = () => {
   const {
@@ -15,7 +19,7 @@ const BasicForm = () => {
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
     reset: resetNameInput,
-  } = useInput((value) => value.trim() !== '');
+  } = useInputWR(isNotEmpty);
 
   const {
     value: enteredSurname,
@@ -24,7 +28,7 @@ const BasicForm = () => {
     valueChangeHandler: surnameChangeHandler,
     inputBlurHandler: surnameBlurHandler,
     reset: resetSurnameInput,
-  } = useInput((value) => value.trim() !== '');
+  } = useInputWR(isNotEmpty);
 
   const {
     value: enteredEmail,
@@ -33,7 +37,7 @@ const BasicForm = () => {
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmailInput,
-  } = useInput((value) => value.includes('@') && value.trim() !== '');
+  } = useInputWR(isEmail);
 
   let formIsValid = false;
 
@@ -44,6 +48,7 @@ const BasicForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    // to prevent submitting if user enables the submit button with devTools
     if (!enteredNameIsValid && !enteredSurname && !enteredEmailIsValid) {
       return;
     }
