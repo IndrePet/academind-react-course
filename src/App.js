@@ -1,34 +1,24 @@
-import { Route, Routes, Navigate, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
-import AllQuotes from './pages/AllQuotes';
-import QuoteDetail from './pages/QuoteDetail';
-import NewQuote from './pages/NewQuote';
-import NotFound from './pages/NotFound';
-import Layout from './components/layout/Layout';
-import Comments from './components/comments/Comments';
+import Layout from './components/Layout/Layout';
+import UserProfile from './components/Profile/UserProfile';
+import AuthPage from './pages/AuthPage';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
     <Layout>
-      <Routes>
-        <Route path='/' element={<Navigate replace to='/quotes' />} />
-        <Route path='/quotes' element={<AllQuotes />} />
-        <Route path='/quotes/:quoteId' element={<QuoteDetail />}>
-          <Route
-            path=''
-            element={
-              <div className='centered'>
-                <Link className='btn--flat' to={`comments`}>
-                  Load Comments
-                </Link>
-              </div>
-            }
-          />
-          <Route path={`comments`} element={<Comments />} />
+      <Switch>
+        <Route path='/' exact>
+          <HomePage />
         </Route>
-        <Route path='/new-quote' element={<NewQuote />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+        <Route path='/auth'>
+          <AuthPage />
+        </Route>
+        <Route path='/profile'>
+          <UserProfile />
+        </Route>
+      </Switch>
     </Layout>
   );
 }
