@@ -1,30 +1,24 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-
-import Layout from './components/Layout/Layout';
-import UserProfile from './components/Profile/UserProfile';
-import AuthPage from './pages/AuthPage';
-import HomePage from './pages/HomePage';
-import { useSelector } from 'react-redux';
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-  const isLoggedIn = useSelector((state) => !!state.user.token);
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        {!isLoggedIn && <Route path="/auth" element={<AuthPage />} />}
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute canAccess={isLoggedIn} redirect={'/'}>
-              <UserProfile />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Layout>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
 }
 
